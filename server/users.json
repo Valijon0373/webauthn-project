@@ -1,0 +1,20 @@
+[
+  {
+    "id": "7917bb4c-ddc1-44e6-a18e-4af209cbe504",
+    "email": "d.valijon2001@gmail.com",
+    "passwordHash": "$2b$10$yN5pg4p/RrxSkuTgvbMpjOMUG71a1lkSevLXAOg9ElWFmW/rBnM1q",
+    "webauthnCredentials": []
+  },
+  {
+    "id": "40d413b7-d920-4576-bf26-0444fed1997f",
+    "email": "valijon2001@gmail.com",
+    "passwordHash": "$2b$10$TTw7Hz8sUGvOPF0eLnlukev9xIYgvxzSx0oRPB5/EdSHvBk97.cxi",
+    "webauthnCredentials": []
+  },
+  {
+    "id": "b03b6026-ca3d-4353-8471-277b673dd08a",
+    "email": "sss@gmail.com",
+    "passwordHash": "$2b$10$J64I//PDeyZ4T7LfZp/0ie/78/fVeOaXxRBZMK7xkR5eCmbE23EMC",
+    "webauthnCredentials": []
+  }
+]
