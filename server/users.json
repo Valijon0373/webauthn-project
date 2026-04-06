@@ -3,17 +3,7 @@
     "id": "7917bb4c-ddc1-44e6-a18e-4af209cbe504",
     "email": "d.valijon2001@gmail.com",
     "passwordHash": "$2b$10$yN5pg4p/RrxSkuTgvbMpjOMUG71a1lkSevLXAOg9ElWFmW/rBnM1q",
-    "webauthnCredentials": [
-      {
-        "credentialID": "XH9tpxysRuoFoGhITxFFgg",
-        "credentialPublicKey": "pQECAyYgASFYIF936LxPF9qSyyLXVl0fXCFtusVlgM5bwHRAegOAhKVUIlggGaO1_2I6Vp_gMEDQzt8II2-FDLJxJ88unTmphcSMzJQ",
-        "counter": 0,
-        "transports": [
-          "hybrid",
-          "internal"
-        ]
-      }
-    ]
+    "webauthnCredentials": []
   },
   {
     "id": "40d413b7-d920-4576-bf26-0444fed1997f",

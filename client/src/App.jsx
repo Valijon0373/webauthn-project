@@ -514,7 +514,7 @@ function DashboardPage() {
           <button
             type="button"
             onClick={() => signOut()}
-            className="mt-2 text-left text-slate-400 underline-offset-4 hover:text-slate-200 hover:underline"
+            className="mt-3 w-full rounded-lg border border-rose-500/70 px-4 py-2 text-sm font-medium text-rose-300 transition hover:bg-rose-500/10 hover:text-rose-200"
           >
             Chiqish
           </button>
