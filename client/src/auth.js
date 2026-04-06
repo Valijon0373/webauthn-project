@@ -61,3 +61,7 @@ export function webauthnLoginVerify(body) {
     body: JSON.stringify(body),
   });
 }
+
+export function webauthnDisable() {
+  return api('/webauthn/disable', { method: 'POST' });
+}

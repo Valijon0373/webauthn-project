@@ -185,6 +185,16 @@ router.post('/webauthn/register/verify', requireSessionUser, async (req, res) =>
   }
 });
 
+router.post('/webauthn/disable', requireSessionUser, (req, res) => {
+  try {
+    updateUser(req.user.id, (u) => ({ ...u, webauthnCredentials: [] }));
+    res.json({ ok: true, webauthnEnabled: false });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Failed to disable passkey' });
+  }
+});
+
 router.post('/webauthn/login/options', async (req, res) => {
   try {
     const { email } = req.body || {};
