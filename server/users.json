@@ -3,7 +3,17 @@
     "id": "7917bb4c-ddc1-44e6-a18e-4af209cbe504",
     "email": "d.valijon2001@gmail.com",
     "passwordHash": "$2b$10$yN5pg4p/RrxSkuTgvbMpjOMUG71a1lkSevLXAOg9ElWFmW/rBnM1q",
-    "webauthnCredentials": []
+    "webauthnCredentials": [
+      {
+        "credentialID": "t8wocNdZAFxEbgeu7o6AWg",
+        "credentialPublicKey": "pQECAyYgASFYIEPLwwzGA_1ZCwZ6gctKA4VMZb2qcrwPp0pN6mp9HNISIlggP7EtyLtNWejlPWj6Mswa-O4b5amrWwOLpCZ_A32unsk",
+        "counter": 0,
+        "transports": [
+          "hybrid",
+          "internal"
+        ]
+      }
+    ]
   },
   {
     "id": "40d413b7-d920-4576-bf26-0444fed1997f",
@@ -16,5 +26,27 @@
     "email": "sss@gmail.com",
     "passwordHash": "$2b$10$J64I//PDeyZ4T7LfZp/0ie/78/fVeOaXxRBZMK7xkR5eCmbE23EMC",
     "webauthnCredentials": []
+  },
+  {
+    "id": "3cf5210f-4e86-48a6-b57b-04d2454d0832",
+    "email": "valijondavlatmuratov@gmail.com",
+    "passwordHash": "$2b$10$wllDFyfvF6cByx8UYCZjcO.bIuzZK/gOKJtE5o4ysrSDF6ZlP3dWK",
+    "webauthnCredentials": []
+  },
+  {
+    "id": "8c4faf19-a2b5-4393-b237-55b9b1764286",
+    "email": "valijon.loptop@gmail.com",
+    "passwordHash": "$2b$10$NJAk3Ig7IrftXfVQry3LYuWHytXmbxkbRpGN7QQ5AGbOZncRZG8ta",
+    "webauthnCredentials": [
+      {
+        "credentialID": "HBIJ8BOMAYuCy-qYbObK0Q",
+        "credentialPublicKey": "pQECAyYgASFYIID8YBWtMjPDhAbWmHNECBK-yG5JSFQYGmgQl3DCh6gJIlggHarHAsDA8ouauRl8BgsblN6RnDCSmUGwBXj5zEQ0rBw",
+        "counter": 0,
+        "transports": [
+          "hybrid",
+          "internal"
+        ]
+      }
+    ]
   }
 ]
