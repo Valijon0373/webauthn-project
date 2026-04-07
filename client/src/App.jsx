@@ -243,7 +243,7 @@ function LoginPage() {
         >
           <span className="flex items-center justify-center gap-2">
             <Fingerprint className="h-4 w-4" />
-            {faceBusy ? 'Waiting for authenticator…' : 'Login with Face ID'}
+            {faceBusy ? 'Waiting for authenticator…' : 'Login with Fingerprint'}
           </span>
         </button>
         {!canWebAuthn ? (
@@ -655,7 +655,7 @@ function DashboardPage() {
               Hisobingiz uchun passkey (barmoq izi, Face ID yoki Windows Hello)
               sozlang. Keyingi safar tizimga kirganda{' '}
               <span className="font-semibold text-slate-200">
-                Login with Face ID
+                Login with Fingerprint
               </span>{' '}
               tugmasidan foydalanishingiz mumkin bo'ladi.
             </p>
