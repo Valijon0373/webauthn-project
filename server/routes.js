@@ -10,6 +10,7 @@ import {
 import {
   createUser,
   findUserByEmail,
+  findUserByCredentialID,
   findUserById,
   updateUser,
 } from './usersStore.js';
@@ -197,20 +198,28 @@ router.post('/webauthn/disable', requireSessionUser, (req, res) => {
 
 router.post('/webauthn/login/options', async (req, res) => {
   try {
+    const { rpID, origin } = rpConfig(req);
     const { email } = req.body || {};
-    const user = findUserByEmail(email);
-    if (!user || !(user.webauthnCredentials || []).length) {
+    const normalizedEmail = email ? String(email).toLowerCase().trim() : '';
+
+    // If email is provided we can narrow to that user's allowCredentials.
+    // If not, we allow username-less sign-in (discoverable credentials / resident keys).
+    const user = normalizedEmail ? findUserByEmail(normalizedEmail) : undefined;
+    const userHasCreds = user && (user.webauthnCredentials || []).length > 0;
+    if (normalizedEmail && !userHasCreds) {
       return res.status(400).json({
-        error: 'No passkey for this account. Sign in with password and enable Face ID first.',
+        error:
+          'No passkey for this account. Sign in with password and enable fingerprint first.',
       });
     }
 
-    const { rpID, origin } = rpConfig(req);
-    const allowCredentials = user.webauthnCredentials.map((c) => ({
-      id: Buffer.from(c.credentialID, 'base64url'),
-      type: 'public-key',
-      transports: c.transports,
-    }));
+    const allowCredentials = userHasCreds
+      ? user.webauthnCredentials.map((c) => ({
+          id: Buffer.from(c.credentialID, 'base64url'),
+          type: 'public-key',
+          transports: c.transports,
+        }))
+      : undefined;
 
     const options = await generateAuthenticationOptions({
       rpID,
@@ -219,7 +228,7 @@ router.post('/webauthn/login/options', async (req, res) => {
     });
 
     req.session.webauthnAuthChallenge = options.challenge;
-    req.session.webauthnAuthUserId = user.id;
+    req.session.webauthnAuthUserId = userHasCreds ? user.id : null;
     req.session.webauthnRpID = rpID;
     req.session.webauthnOrigin = origin;
 
@@ -236,19 +245,20 @@ router.post('/webauthn/login/verify', async (req, res) => {
     const userId = req.session.webauthnAuthUserId;
     const { rpID, origin } = rpConfig(req);
 
-    if (!expectedChallenge || !userId) {
+    if (!expectedChallenge) {
       return res.status(400).json({ error: 'No active sign-in challenge' });
-    }
-
-    const user = findUserById(userId);
-    if (!user) {
-      return res.status(400).json({ error: 'User not found' });
     }
 
     const body = req.body;
     const credIdB64 = body?.id;
     if (!credIdB64) {
       return res.status(400).json({ error: 'Invalid credential' });
+    }
+
+    // If userId is known (email-based options) use it, otherwise discover user by credentialID.
+    const user = userId ? findUserById(userId) : findUserByCredentialID(credIdB64);
+    if (!user) {
+      return res.status(400).json({ error: 'User not found for this credential' });
     }
 
     const authenticator = user.webauthnCredentials.find(

@@ -28,6 +28,16 @@ export function findUserById(id) {
   return readFile().find((u) => u.id === id);
 }
 
+export function findUserByCredentialID(credentialID) {
+  if (!credentialID) return undefined;
+  const users = readFile();
+  for (const u of users) {
+    const creds = u.webauthnCredentials || [];
+    if (creds.some((c) => c.credentialID === credentialID)) return u;
+  }
+  return undefined;
+}
+
 export function createUser(user) {
   const users = readFile();
   users.push(user);

@@ -51,7 +51,7 @@ export function webauthnRegisterVerify(body) {
 export function webauthnLoginOptions(email) {
   return api('/webauthn/login/options', {
     method: 'POST',
-    body: JSON.stringify({ email }),
+    body: JSON.stringify(email ? { email } : {}),
   });
 }
 

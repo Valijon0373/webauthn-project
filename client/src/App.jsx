@@ -136,10 +136,6 @@ function LoginPage() {
   }
 
   async function onFaceIdLogin() {
-    if (!email.trim()) {
-      setErr('Enter your email first.')
-      return
-    }
     if (!canWebAuthn) {
       setErr('WebAuthn is not available in this browser.')
       return
